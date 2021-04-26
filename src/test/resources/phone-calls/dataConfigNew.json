@@ -1,0 +1,410 @@
+{
+  "defaultConfig": {
+    "separator": ",",
+    "rowsPerCommit": 50,
+    "threads": 4
+  },
+  "attribute": {
+    "is-in-use": {
+      "dataPath": "src/test/resources/phone-calls/is-in-use.csv",
+      "handler": "is-in-use",
+      "column": "values"
+    }
+  },
+  "entity": {
+    "person": {
+      "dataPath": "src/test/resources/phone-calls/person.csv",
+      "handler": "person",
+      "attributes": [
+        {
+          "handler": "has-first-name",
+          "column": "first_name",
+          "requireNonEmpty": true
+        },
+        {
+          "handler": "has-last-name",
+          "column": "last_name",
+          "requireNonEmpty": true
+        },
+        {
+          "handler": "has-phone-number",
+          "column": "phone_number",
+          "requireNonEmpty": true
+        },
+        {
+          "handler": "has-city",
+          "column": "city",
+          "requireNonEmpty": true
+        },
+        {
+          "handler": "has-age",
+          "column": "age",
+          "requireNonEmpty": true
+        },
+        {
+          "handler": "has-nick-name",
+          "column": "nick_name",
+          "listSeparator": ";",
+          "requireNonEmpty": true
+        }
+      ]
+    },
+    "company": {
+      "dataPath": "src/test/resources/phone-calls/company.csv",
+      "config": {
+        "rowsPerCommit": 100,
+        "threads": 1
+      },
+      "handler": "company",
+      "attributes": [
+        {
+          "handler": "has-name",
+          "column": "name",
+          "requireNonEmpty": true
+        }
+      ]
+    }
+  },
+  "relation": {
+    "contract": {
+      "dataPath": "src/test/resources/phone-calls/contract.csv",
+      "config": {
+        "rowsPerCommit": 100
+      },
+      "handler": "contract",
+      "players": [
+        {
+          "handler": "provider-roleplayer",
+          "getter": [
+            {
+              "handler": "company"
+            },
+            {
+              "handler": "has-name",
+              "handlerType": "ownership",
+              "column": "company_name",
+              "requireNonEmpty": true
+            }
+          ]
+        },
+        {
+          "handler": "customer-roleplayer",
+          "getter": [
+            {
+              "handler": "person",
+              "handlerType": "entity"
+            },
+            {
+              "handler": "has-phone-number",
+              "handlerType": "ownership",
+              "columnName": "person_id",
+              "listSeparator": "###",
+              "requireNonEmpty": true
+            }
+          ]
+        }
+      ]
+    },
+    "calls": {
+      "dataPath": "src/test/resources/phone-calls/call.csv",
+      "config": {
+        "rowsPerCommit": 100
+      },
+      "handler": "call",
+      "players": [
+        {
+          "handler": "caller-roleplayer",
+          "getter": [
+            {
+              "handler": "person",
+              "handlerType": "entity"
+            },
+            {
+              "handler": "has-phone-number",
+              "handlerType": "ownership",
+              "column": "caller_id",
+              "requireNonEmpty": true
+            }
+          ]
+        },
+        {
+          "handler": "callee-roleplayer",
+          "getter": [
+            {
+              "handler": "person",
+              "handlerType": "entity"
+            },
+            {
+              "handler": "has-phone-number",
+              "handlerType": "ownership",
+              "column": "callee_id",
+              "requireNonEmpty": true
+            }
+          ]
+        }
+      ],
+      "attributes": [
+        {
+          "handler": "has-started-at",
+          "column": "started_at",
+          "requireNonEmpty": true
+        },
+        {
+          "handler": "has-duration",
+          "columnn": "duration",
+          "requireNonEmpty": true
+        }
+      ]
+    },
+    "communication-channel": {
+      "dataPath": "src/test/resources/phone-calls/communication-channel.csv",
+      "config": {
+        "rowsPerCommit": 100
+      },
+      "handler": "communication-channel",
+      "players": [
+        {
+          "handler": "peer-roleplayer",
+          "getter": [
+            {
+              "handler": "person",
+              "handlerType": "entity"
+            },
+            {
+              "handler": "has-phone-number",
+              "handlerType": "ownership",
+              "column": "peer_1",
+              "requireNonEmpty": true
+            }
+          ]
+        },
+        {
+          "handler": "peer-roleplayer",
+          "getter": [
+            {
+              "handler": "person",
+              "handlerType": "entity"
+            },
+            {
+              "handler": "has-phone-number",
+              "handlerType": "ownership",
+              "column": "peer_2",
+              "requireNonEmpty": true
+            }
+          ]
+        },
+        {
+          "handler": "past-call-roleplayer",
+          "getter": [
+            {
+              "handler": "call",
+              "handlerType": "relation"
+            },
+            {
+              "handler": "has-started-at",
+              "handlerType": "ownership",
+              "column": "call_started_at",
+              "listSeparator": "###",
+              "requireNonEmpty": false
+            }
+          ]
+        }
+      ]
+    },
+    "communication-channel-pm": {
+      "dataPath": "src/test/resources/phone-calls/communication-channel-pm.csv",
+      "config": {
+        "rowsPerCommit": 100
+      },
+      "handler": "communication-channel",
+      "players": [
+        {
+          "handler": "peer-roleplayer",
+          "getter": [
+            {
+              "handler": "person",
+              "handlerType": "entity"
+            },
+            {
+              "handler": "has-phone-number",
+              "handlerType": "ownership",
+              "column": "peer_1",
+              "requireNonEmpty": true
+            }
+          ]
+        },
+        {
+          "handler": "peer-roleplayer",
+          "getter": [
+            {
+              "handler": "person",
+              "handlerType": "entity"
+            },
+            {
+              "handler": "has-phone-number",
+              "handlerType": "ownership",
+              "column": "peer_2",
+              "requireNonEmpty": true
+            }
+          ]
+        },
+        {
+          "handler": "past-call-roleplayer",
+          "getter": [
+            {
+              "typeHandler": "call",
+              "players": [
+                {
+                  "handler": "caller-roleplayer",
+                  "getter": [
+                    {
+                      "handler": "person",
+                      "handlerType": "entity"
+                    },
+                    {
+                      "handler": "has-phone-number",
+                      "handlerType": "ownership",
+                      "column": "peer_1",
+                      "requireNonEmpty": true
+                    }
+                  ]
+                },
+                {
+                  "handler": "callee-roleplayer",
+                  "getter": [
+                    {
+                      "handler": "person",
+                      "handlerType": "entity"
+                    },
+                    {
+                      "handler": "has-phone-number",
+                      "handlerType": "ownership",
+                      "column": "peer_2",
+                      "requireNonEmpty": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "in-use": {
+      "dataPath": "src/test/resources/phone-calls/in-use.csv",
+      "handler": "in-use",
+      "players": [
+        {
+          "handler": "account-roleplayer",
+          "getter": [
+            {
+              "handler": "phone-number",
+              "handlerType": "attribute",
+              "column": "pn",
+              "requireNonEmpty": true
+            }
+          ]
+        },
+        {
+          "handler": "status-roleplayer",
+          "getter": [
+            {
+              "handler": "is-in-use",
+              "handlerType": "attribute",
+              "column": "in_use",
+              "requireNonEmpty": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "append-attribute": {
+    "append-twitter": {
+      "dataPath": "src/test/resources/phone-calls/append-twitter.csv",
+      "config": {
+        "rowsPerCommit": 100
+      },
+      "getter": [
+        {
+          "handler": "person",
+          "handlerType": "entity"
+        },
+        {
+          "handler": "has-phone-number",
+          "handlerType": "ownership",
+          "column": "phone_number",
+          "requireNonEmpty": true
+        }
+      ],
+      "attributes": [
+        {
+          "handler": "has-twitter-username",
+          "column": "twitter",
+          "listSeparator": "###",
+          "requireNonEmpty": true
+        }
+      ]
+    },
+    "append-call-rating": {
+      "dataPath": "src/test/resources/phone-calls/append-call-rating.csv",
+      "config": {
+        "rowsPerCommit": 100
+      },
+      "getter": [
+        {
+          "handler": "call",
+          "handlerType": "relation"
+        },
+        {
+          "handler": "has-started-at",
+          "handlerType": "ownership",
+          "column": "started_at",
+          "requireNonEmpty": true
+        }
+      ],
+      "attributes": [
+        {
+          "handler": "has-call-rating",
+          "column": "call_rating",
+          "requireNonEmpty": true
+        }
+      ]
+    },
+    "append-pp-fakebook": {
+      "dataPath": "src/test/resources/phone-calls/append-fb-preprocessed.csv",
+      "config": {
+        "rowsPerCommit": 100
+      },
+      "getter": [
+        {
+          "handler": "person",
+          "handlerType": "entity"
+        },
+        {
+          "handler": "has-phone-number",
+          "handlerType": "ownership",
+          "column": "phone_number",
+          "requireNonEmpty": true
+        }
+      ],
+      "attributes": [
+        {
+          "handler": "has-fakebook-link",
+          "column": "fb",
+          "listSeparator": "###",
+          "requireNonEmpty": true,
+          "preprocessor": {
+            "type": "regex",
+            "params": {
+              "regexMatch": "^.*(fakebook\\.com.*)/$",
+              "regexReplace": "$1"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "append-role-player": {
+  }
+}

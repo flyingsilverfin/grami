@@ -1,0 +1,139 @@
+{
+  "attribute": [
+    {
+      "name": "is-in-use",
+      "attributeType": "is-in-use",
+      "valueType": "string"
+    },
+    {
+      "name": "phone-number",
+      "attributeType": "phone-number",
+      "valueType": "string"
+    }
+  ],
+  "entity": [
+    {
+      "name": "person",
+      "entityType": "person"
+    },
+    {
+      "name": "company",
+      "entityType": "company"
+    }
+  ],
+  "relation": [
+    {
+      "name": "contract",
+      "relationType": "contract",
+      "players": [
+        {
+          "name": "provider-roleplayer",
+          "roleType": "provider"
+        },
+        {
+          "name": "customer-roleplayer",
+          "roleType": "provider"
+        }
+      ]
+    },
+    {
+      "name": "call",
+      "relationType": "call",
+      "players": [
+        {
+          "name": "caller-roleplayer",
+          "roleType": "caller"
+        },
+        {
+          "name": "callee-roleplayer",
+          "roleType": "callee"
+        }
+      ]
+    },
+    {
+      "name": "communication-channel",
+      "relationType": "communcation-channel",
+      "players": [
+        {
+          "name": "peer-roleplayer",
+          "roleType": "peer"
+        },
+        {
+          "name": "past-call-roleplayer",
+          "roleType": "past-call"
+        }
+      ]
+    },
+    {
+      "name": "in-use",
+      "relationType": "in-use",
+      "players": [
+        {
+          "name": "account-roleplayer",
+          "roleType": "account"
+        },
+        {
+          "name": "status-roleplayer",
+          "roleType": "status"
+        }
+      ]
+    }
+  ],
+  "ownership": [
+    {
+      "name": "has-first-name",
+      "attributeType": "first-name",
+      "valueType": "string"
+    },
+    {
+      "name": "has-last-name",
+      "attributeType": "first-name",
+      "valueType": "string"
+    },
+    {
+      "name": "has-name",
+      "attributeType": "name",
+      "valueType": "string"
+    },
+    {
+      "name": "has-phone-number",
+      "attributeType": "phone-number",
+      "valueType": "string"
+    },
+    {
+      "name": "has-city",
+      "attributeType": "city",
+      "valueType": "string"
+    },
+    {
+      "name": "has-age",
+      "attributeType": "age",
+      "valueType": "long"
+    },
+    {
+      "name": "has-nick-name",
+      "attributeType": "nick-name",
+      "valueType": "string"
+    },
+    {
+      "name": "has-name",
+      "attributeType": "name",
+      "valueType": "string"
+    },
+    {
+      "name": "has-started-at",
+      "attributeType": "started-at",
+      "valueType": "datetime"
+    },
+    {
+      "name": "has-duration",
+      "attributeType": "duration",
+      "valueType": "long"
+    },
+    {
+      "name": "has-twitter-username",
+      "attributeType": "twitter-username",
+      "valueType": "string"
+    }
+  ]
+}
