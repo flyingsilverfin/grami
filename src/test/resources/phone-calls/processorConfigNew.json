@@ -6,8 +6,53 @@
       "valueType": "string"
     },
     {
+      "name": "first-name",
+      "attributeType": "first-name",
+      "valueType": "string"
+    },
+    {
+      "name": "last-name",
+      "attributeType": "last-name",
+      "valueType": "string"
+    },
+    {
+      "name": "name",
+      "attributeType": "name",
+      "valueType": "string"
+    },
+    {
       "name": "phone-number",
       "attributeType": "phone-number",
+      "valueType": "string"
+    },
+    {
+      "name": "city",
+      "attributeType": "city",
+      "valueType": "string"
+    },
+    {
+      "name": "age",
+      "attributeType": "age",
+      "valueType": "long"
+    },
+    {
+      "name": "nick-name",
+      "attributeType": "nick-name",
+      "valueType": "string"
+    },
+    {
+      "name": "started-at",
+      "attributeType": "started-at",
+      "valueType": "datetime"
+    },
+    {
+      "name": "duration",
+      "attributeType": "duration",
+      "valueType": "long"
+    },
+    {
+      "name": "twitter-username",
+      "attributeType": "twitter-username",
       "valueType": "string"
     }
   ],
@@ -82,58 +127,43 @@
   "ownership": [
     {
       "name": "has-first-name",
-      "attributeType": "first-name",
-      "valueType": "string"
+      "attributeHandler": "first-name"
     },
     {
       "name": "has-last-name",
-      "attributeType": "first-name",
-      "valueType": "string"
+      "attributeHandler": "last-name"
     },
     {
       "name": "has-name",
-      "attributeType": "name",
-      "valueType": "string"
+      "attributeHandler": "name"
     },
     {
       "name": "has-phone-number",
-      "attributeType": "phone-number",
-      "valueType": "string"
+      "attributeHandler": "phone-number"
     },
     {
       "name": "has-city",
-      "attributeType": "city",
-      "valueType": "string"
+      "attributeHandler": "city"
     },
     {
       "name": "has-age",
-      "attributeType": "age",
-      "valueType": "long"
+      "attributeHandler": "age"
     },
     {
       "name": "has-nick-name",
-      "attributeType": "nick-name",
-      "valueType": "string"
-    },
-    {
-      "name": "has-name",
-      "attributeType": "name",
-      "valueType": "string"
+      "attributeHandler": "nick-name"
     },
     {
       "name": "has-started-at",
-      "attributeType": "started-at",
-      "valueType": "datetime"
+      "attributeHandler": "started-at"
     },
     {
       "name": "has-duration",
-      "attributeType": "duration",
-      "valueType": "long"
+      "attributeHandler": "duration"
     },
     {
       "name": "has-twitter-username",
-      "attributeType": "twitter-username",
-      "valueType": "string"
+      "attributeHandler": "twitter-username"
     }
   ]
 }
